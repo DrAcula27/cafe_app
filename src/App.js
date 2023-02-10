@@ -1,16 +1,27 @@
 import "./App.css";
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import AuthPage from "./pages/auth";
+import NewOrderPage from "./pages/new_order";
+import OrderHistoryPage from "./pages/order_history";
+import Nav from "./components/nav";
 
 function App() {
-  // test routing
-  const testFunc = async () => {
-    const response = await fetch("/test_route");
-    console.log(response);
-  };
-  testFunc();
+  const [user, setUser] = useState({});
 
   return (
     <div className="App">
-      <h1>Cafe App</h1>
+      {user ? (
+        <div>
+          <Nav />
+          <Routes>
+            <Route path="/orders" element={<OrderHistoryPage />} />
+            <Route path="/orders/new" element={<NewOrderPage />} />
+          </Routes>
+        </div>
+      ) : (
+        <AuthPage />
+      )}
     </div>
   );
 }
