@@ -1,6 +1,30 @@
-# Getting Started with Create React App
+<h1 align="center">Welcome to the Cafe!</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <img src="https://img.shields.io/badge/npm-%3E%3D9.1.2-blue.svg" />
+  <img src="https://img.shields.io/badge/node-%3E%3D18.12.1-blue.svg" />
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Per Scholas - Week 11 - Full-Stack with MERN - Cafe_App
+
+> Project description...
+
+## Demo
+
+![demo](./public/assets/demo.png)
+
+### 🏠 [Homepage](https://github.com/DrAcula27/cafe_app#readme)
+
+## Author
+
+👤 **Danielle Andrews**
+
+- Github: [@DrAcula27](https://github.com/DrAcula27)
+- LinkedIn: [@daniellerandrews](https://linkedin.com/in/daniellerandrews)
+
+## Project Details
+
+**This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).**
 
 ## Available Scripts
 
@@ -68,3 +92,24 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Tech Stack
+
+This project uses the MERN stack.
+
+- **M** - [MongoDB](https://www.mongodb.com/) <img src="https://raw.githubusercontent.com/mongodb/mongo/master/docs/leaf.svg" width="20" height="20" />
+- **E** - [Express](https://expressjs.com/) <img src="https://raw.githubusercontent.com/expressjs/expressjs.com/gh-pages/images/favicon.png" width="20" height="20" />
+- **R** - [React](https://reactjs.org/) <img src="https://raw.githubusercontent.com/facebook/react/main/fixtures/attribute-behavior/public/favicon.ico" width="20" height="20" />
+- **N** - [Node](https://nodejs.org/en/) <img src="https://raw.githubusercontent.com/nodejs/nodejs.org/main/static/images/logos/js-green.svg" width="20" height="20" />
+
+## Future Work
+
+-
+
+## Attributions
+
+-
+
+## Show Your Support
+
+Give a ⭐️ if you liked this project!
