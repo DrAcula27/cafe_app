@@ -25,12 +25,16 @@ app.use(express.static(path.join(__dirname, "build")));
 
 // ROUTES
 
-// test route
-app.get("/test_route", (req, res) => {
-  res.send("test route");
+// database signup route
+app.post("/api/users", (req, res) => {
+  console.log(req.body);
+  // do auth
+
+  // send user response
+  res.json("good route");
 });
 
-// catch-all route, must be last in route list
+// catch-all route for get requests, must be last in route list
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });

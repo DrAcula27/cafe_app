@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { signUp } from "../../utilities/user-functions";
 
 export default class SignUpForm extends Component {
   state = {
@@ -17,10 +18,19 @@ export default class SignUpForm extends Component {
     });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     // disable page refresh
     e.preventDefault();
-    console.log("submitting form");
+
+    // grab form data from frontend
+    let formData = { ...this.state };
+    delete formData.confirm;
+    delete formData.error;
+
+    // make async call to server with the data in a different file - will bring in that function here
+    let response = await signUp(formData);
+
+    console.log(response);
   };
 
   render() {
@@ -63,11 +73,7 @@ export default class SignUpForm extends Component {
               onChange={this.handleChange}
               required
             />
-            <button
-              type="submit"
-              disabled={disable}
-              onSubmit={this.handleSubmit}
-            >
+            <button type="submit" disabled={disable}>
               SIGN UP
             </button>
           </form>
