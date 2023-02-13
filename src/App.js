@@ -7,7 +7,7 @@ import OrderHistoryPage from "./pages/order_history";
 import Nav from "./components/nav";
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   return (
     <div className="App">
