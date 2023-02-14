@@ -22,6 +22,7 @@ const Login = () => {
     e.preventDefault();
     // make a call to the server, and authenticate
     let response = await logIn(formState);
+    console.log(response);
   };
 
   return (
