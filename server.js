@@ -2,6 +2,8 @@ const express = require("express");
 const path = require("path");
 const logger = require("morgan");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
+const User = require("./models/user");
 require("dotenv").config();
 require("./config/database.js");
 
@@ -26,12 +28,19 @@ app.use(express.static(path.join(__dirname, "build")));
 // ROUTES
 
 // database signup route
-app.post("/api/users", (req, res) => {
+app.post("/api/users/signup", async (req, res) => {
   console.log(req.body);
-  // do auth
-
+  let hashedPassword = await bcrypt.hash(req.body.password, 10);
+  console.log(hashedPassword);
+  // use User model to place user in database
+  let userFromCollection = await User.create({
+    email: req.body.email,
+    name: req.body.name,
+    password: hashedPassword,
+  });
+  console.log(userFromCollection);
   // send user response
-  res.json("good route");
+  res.json("user created");
 });
 
 // catch-all route for get requests, must be last in route list
