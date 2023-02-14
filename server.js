@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, "build")));
 // ROUTES
 
 // database signup route
-app.post("/api/users/signup", async (req, res) => {
+app.post("/users/signup", async (req, res) => {
   let hashedPassword = await bcrypt.hash(req.body.password, 10);
   // use User model to place user in database
   let userFromCollection = await User.create({
@@ -37,8 +37,12 @@ app.post("/api/users/signup", async (req, res) => {
     password: hashedPassword,
   });
   console.log(userFromCollection);
-  // send user response
   res.json("user created");
+});
+
+// database login route
+app.put("/users/login", async (req, res) => {
+  console.log(req.body);
 });
 
 // catch-all route for get requests, must be last in route list

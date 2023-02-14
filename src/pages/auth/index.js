@@ -7,7 +7,7 @@ const Auth = () => {
   const [isSignup, setIsSignup] = useState(true);
 
   const handleButtonClick = () => {
-    isSignup ? setIsSignup(false) : setIsSignup(true);
+    setIsSignup(isSignup ? false : true);
   };
 
   return (
@@ -15,7 +15,7 @@ const Auth = () => {
       <div>
         <div>Logo</div>
         <div className="login-button" onClick={handleButtonClick}>
-          {isSignup ? "Sign Up" : "Log In"}
+          {isSignup ? "Log In" : "Sign Up"}
         </div>
       </div>
       {isSignup ? <SignUpForm /> : <Login />}
