@@ -29,9 +29,7 @@ app.use(express.static(path.join(__dirname, "build")));
 
 // database signup route
 app.post("/api/users/signup", async (req, res) => {
-  console.log(req.body);
   let hashedPassword = await bcrypt.hash(req.body.password, 10);
-  console.log(hashedPassword);
   // use User model to place user in database
   let userFromCollection = await User.create({
     email: req.body.email,
