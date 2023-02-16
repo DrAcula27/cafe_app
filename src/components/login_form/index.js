@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { logIn } from "../../utilities/user-functions";
+import { logIn, getUserFromSession } from "../../utilities/user-functions";
 
-const Login = () => {
+const Login = ({ setUser }) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(true);
@@ -21,8 +21,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // make a call to the server, and authenticate
-    let response = await logIn(formState);
-    console.log(response);
+    await logIn(formState);
+    // get session info (user)
+    let user = await getUserFromSession();
+    setUser(user);
   };
 
   return (

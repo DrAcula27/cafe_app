@@ -44,7 +44,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
-    cookie: { originalMaxAge: 3600000 }, // session times out after an hour, user must log in again
+    cookie: { originalMaxAge: 3600000, sameSite: "strict" }, // session times out after an hour, user must log in again
   })
 );
 
@@ -52,6 +52,12 @@ app.use(
 app.use(express.static(path.join(__dirname, "build")));
 
 // ROUTES
+
+app.get("/session-info", (req, res) => {
+  res.json({
+    session: req.session,
+  });
+});
 
 // database signup route
 app.post("/users/signup", async (req, res) => {
@@ -67,11 +73,11 @@ app.post("/users/signup", async (req, res) => {
 });
 
 // database login route
-app.put("/users/login", async (req, res) => {
+app.put("/users/login", async (req, res, next) => {
   console.log(req.body);
   // passport authentication
   passport.authenticate("local", (error, user, message) => {
-    console.log({ error, message });
+    console.log("message from passport config: ", message);
     if (error) throw error;
     if (!user) {
       res.json({
@@ -79,14 +85,15 @@ app.put("/users/login", async (req, res) => {
         user: false,
       });
     } else {
+      // now that user is authenticated, add user to express session with express session's logIn method
       req.logIn(user, (error) => {
+        if (error) throw error;
         res.json({
           message: "successfully authenticated",
-          user: user,
         });
       });
     }
-  });
+  })(req, res, next);
 });
 
 // catch-all route for get requests, must be last in route list

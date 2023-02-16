@@ -3,7 +3,7 @@ import Login from "../../components/login_form";
 import SignUpForm from "../../components/signup_form";
 import "./index.css";
 
-const Auth = () => {
+const Auth = ({ setUser }) => {
   const [isSignup, setIsSignup] = useState(true);
 
   const handleButtonClick = () => {
@@ -18,7 +18,7 @@ const Auth = () => {
           {isSignup ? "Log In" : "Sign Up"}
         </div>
       </div>
-      {isSignup ? <SignUpForm /> : <Login />}
+      {isSignup ? <SignUpForm /> : <Login setUser={setUser} />}
     </section>
   );
 };
