@@ -26,7 +26,7 @@ function App() {
       return (
         <>
           {user ? (
-            <div>
+            <div className="page-wrapper">
               <Nav />
               <Routes>
                 <Route path="/orders" element={<OrderHistoryPage />} />

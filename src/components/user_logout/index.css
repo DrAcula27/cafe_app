@@ -1,0 +1,9 @@
+.user-logout {
+  font-size: 2vmin;
+  color: var(--text-light);
+  text-align: center;
+}
+
+.user-logout .email {
+  font-size: smaller;
+}
