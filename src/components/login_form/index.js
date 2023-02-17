@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { logIn, getUserFromSession } from "../../utilities/user-functions";
+import { AppContext } from "../../contexts/app_context";
 
-const Login = ({ setUser }) => {
+const Login = () => {
+  let { setUser } = useContext(AppContext);
+
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(true);
@@ -20,8 +23,10 @@ const Login = ({ setUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     // make a call to the server, and authenticate
     await logIn(formState);
+
     // get session info (user)
     let user = await getUserFromSession();
     setUser(user);

@@ -1,20 +1,21 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import AuthPage from "./pages/auth";
 import NewOrderPage from "./pages/new_order";
 import OrderHistoryPage from "./pages/order_history";
 import Nav from "./components/nav";
 import { getUserFromSession } from "./utilities/user-functions";
+import { AppContext } from "./contexts/app_context";
 
 function App() {
-  const [user, setUser] = useState(null);
   const [callMade, setCallMade] = useState(null);
+  let { user, setUser } = useContext(AppContext);
 
   useEffect(() => {
     const getSession = async () => {
-      let user = await getUserFromSession();
-      setUser(user);
+      let userResponse = await getUserFromSession();
+      setUser(userResponse);
       setCallMade(true);
     };
     getSession();
@@ -34,12 +35,12 @@ function App() {
               </Routes>
             </div>
           ) : (
-            <AuthPage setUser={setUser} />
+            <AuthPage />
           )}
         </>
       );
     } else {
-      return <div>loading...</div>;
+      return <div>loading...</div>; // could also put cool loader here
     }
   };
 
