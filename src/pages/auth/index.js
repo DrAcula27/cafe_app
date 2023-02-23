@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Login from "../../components/login_form";
 import SignUpForm from "../../components/signup_form";
+import Logo from "../../components/logo";
 import "./index.css";
 
 const Auth = () => {
@@ -13,10 +14,10 @@ const Auth = () => {
   return (
     <section className="auth-page">
       <div>
-        <div>Logo</div>
-        <div className="login-button" onClick={handleButtonClick}>
+        <Logo />
+        <button className="login-button" onClick={handleButtonClick}>
           {isSignup ? "Log In" : "Sign Up"}
-        </div>
+        </button>
       </div>
       {isSignup ? <SignUpForm /> : <Login />}
     </section>

@@ -6,12 +6,16 @@ export const AppContext = createContext();
 const AppContextProvider = ({ children }) => {
   // put state
   const [user, setUser] = useState(null);
+  const [activeCat, setActiveCat] = useState("Sandwiches");
 
   return (
     <AppContext.Provider
       value={{
         user,
         setUser,
+
+        activeCat,
+        setActiveCat,
       }}
     >
       {children}

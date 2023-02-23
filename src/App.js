@@ -7,6 +7,7 @@ import OrderHistoryPage from "./pages/order_history";
 import Nav from "./components/nav";
 import { getUserFromSession } from "./utilities/user-functions";
 import { AppContext } from "./contexts/app_context";
+import Loader from "react-js-loader";
 
 function App() {
   const [callMade, setCallMade] = useState(null);
@@ -40,7 +41,7 @@ function App() {
         </>
       );
     } else {
-      return <div>loading...</div>; // could also put cool loader here
+      return <Loader />;
     }
   };
 

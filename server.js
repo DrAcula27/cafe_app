@@ -7,6 +7,7 @@ const User = require("./models/user");
 const passport = require("passport");
 const session = require("express-session");
 const initializePassport = require("./config/passport-config");
+const category = require("./models/category");
 require("dotenv").config();
 require("./config/database.js");
 
@@ -57,6 +58,12 @@ app.get("/session-info", (req, res) => {
   res.json({
     session: req.session,
   });
+});
+
+app.get("/get_categories", async (req, res) => {
+  let arrayOfCategories = await category.find();
+  console.log(arrayOfCategories);
+  res.json(arrayOfCategories);
 });
 
 // database signup route
