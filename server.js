@@ -3,13 +3,14 @@ const path = require("path");
 const logger = require("morgan");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
-const User = require("./models/user");
 const passport = require("passport");
 const session = require("express-session");
 const initializePassport = require("./config/passport-config");
-const category = require("./models/category");
 require("dotenv").config();
 require("./config/database.js");
+const User = require("./models/user");
+const Category = require("./models/category");
+const Item = require("./models/item");
 
 const app = express();
 
@@ -61,9 +62,13 @@ app.get("/session-info", (req, res) => {
 });
 
 app.get("/get_categories", async (req, res) => {
-  let arrayOfCategories = await category.find();
-  console.log(arrayOfCategories);
+  let arrayOfCategories = await Category.find();
   res.json(arrayOfCategories);
+});
+
+app.get("/get_items", async (req, res) => {
+  let arrayOfItems = await Item.find().populate("category");
+  res.json(arrayOfItems);
 });
 
 // database signup route

@@ -7,6 +7,7 @@ const AppContextProvider = ({ children }) => {
   // put state
   const [user, setUser] = useState(null);
   const [activeCat, setActiveCat] = useState("Sandwiches");
+  const [items, setItems] = useState([]);
 
   return (
     <AppContext.Provider
@@ -16,6 +17,9 @@ const AppContextProvider = ({ children }) => {
 
         activeCat,
         setActiveCat,
+
+        items,
+        setItems,
       }}
     >
       {children}
