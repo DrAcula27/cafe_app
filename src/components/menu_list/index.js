@@ -7,10 +7,13 @@ const MenuList = () => {
   const { activeCat, items } = useContext(AppContext);
 
   let itemsJSX = items.map((item) => {
-    if (item.category.name === activeCat)
-      return <MenuListItem itemData={item} />;
+    if (item.category.name === activeCat) {
+      return <MenuListItem itemData={item} key={item._id} />;
+    } else {
+      return null;
+    }
   });
-  return <div>{itemsJSX}</div>;
+  return <div className="MenuList">{itemsJSX}</div>;
 };
 
 export default MenuList;

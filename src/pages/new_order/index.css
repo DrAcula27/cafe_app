@@ -5,4 +5,5 @@
   grid-template-rows: 1fr;
   background-color: var(--white);
   border-radius: 2vmin;
+  overflow: hidden;
 }
