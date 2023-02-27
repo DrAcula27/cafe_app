@@ -22,7 +22,6 @@ export const logIn = async (formData) => {
 
 export const getUserFromSession = async () => {
   let response = await axios("/session-info");
-  // user now exists!
   if (response.data.session.passport) {
     let user = response.data.session.passport.user;
     return user;

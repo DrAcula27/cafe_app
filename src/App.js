@@ -12,7 +12,7 @@ import axios from "axios";
 
 function App() {
   const [callMade, setCallMade] = useState(null);
-  let { user, setUser, setItems } = useContext(AppContext);
+  let { user, setUser, setItems, setCart } = useContext(AppContext);
 
   useEffect(() => {
     const getSession = async () => {
@@ -33,6 +33,16 @@ function App() {
     getItems();
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    const getCart = async () => {
+      if (user) {
+        let cartResponse = await axios.get("/get_cart");
+        setCart(cartResponse.data);
+      }
+    };
+    getCart();
+  }, [user]);
 
   const returnPage = () => {
     if (callMade) {

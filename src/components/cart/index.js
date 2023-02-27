@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../contexts/app_context";
 import "./index.css";
 
 const Cart = ({ handleChangeQty, handleCheckout }) => {
@@ -6,12 +7,12 @@ const Cart = ({ handleChangeQty, handleCheckout }) => {
 
   // handleCheckout
 
-  let checkoutDone = false;
+  let { cart } = useContext(AppContext);
 
   return (
     <div className="Cart">
       <div className="SectionHeading">
-        {checkoutDone ? (
+        {cart.checkoutDone ? (
           <>
             <span>
               ORDER <span>ABC123</span>
@@ -28,7 +29,7 @@ const Cart = ({ handleChangeQty, handleCheckout }) => {
       <div className="OrderItemContainer">
         {/* list of order items */}
         <section>
-          {checkoutDone ? (
+          {cart.checkoutDone ? (
             <span>TOTAL</span>
           ) : (
             <button className="btn-sm">CHECKOUT</button>

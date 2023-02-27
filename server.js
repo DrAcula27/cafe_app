@@ -11,6 +11,7 @@ require("./config/database.js");
 const User = require("./models/user");
 const Category = require("./models/category");
 const Item = require("./models/item");
+const Order = require("./models/order");
 
 const app = express();
 
@@ -98,7 +99,9 @@ app.put("/users/login", async (req, res, next) => {
       });
     } else {
       // now that user is authenticated, add user to express session with express session's logIn method
-      req.logIn(user, (error) => {
+      let noPasswordUser = { ...user };
+      delete noPasswordUser.password;
+      req.logIn(noPasswordUser, (error) => {
         if (error) throw error;
         res.json({
           message: "successfully authenticated",
@@ -106,6 +109,20 @@ app.put("/users/login", async (req, res, next) => {
       });
     }
   })(req, res, next);
+});
+
+app.get("/get_cart", async (req, res) => {
+  let cart = await Order.getCart(req.session.passport.user._id);
+  res.json(cart);
+});
+
+app.put("/add_to_cart/:itemId/:newQty", async (req, res) => {
+  let { itemId, newQty } = req.params;
+
+  let cart = await Order.getCart(req.session.passport.user._id);
+
+  cart.orderItems.find((orderItem) => orderItem._id.equals(itemId));
+  // check if this item already exists in the array
 });
 
 // catch-all route for get requests, must be last in route list

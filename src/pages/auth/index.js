@@ -5,7 +5,7 @@ import Logo from "../../components/logo";
 import "./index.css";
 
 const Auth = () => {
-  const [isSignup, setIsSignup] = useState(true);
+  const [isSignup, setIsSignup] = useState(false);
 
   const handleButtonClick = () => {
     setIsSignup(isSignup ? false : true);
