@@ -7,11 +7,7 @@ const MenuListItem = ({ itemData }) => {
   const { setCart } = useContext(AppContext);
 
   const handleAddToOrder = async () => {
-    // make an axios call to add an item to the order
-    let res = await axios({
-      method: "PUT",
-      url: `/add_to_cart/${itemData._id}`,
-    });
+    let res = await axios.put(`/add_to_cart/${itemData._id}`);
     if (res.data._id) {
       setCart(res.data);
     }

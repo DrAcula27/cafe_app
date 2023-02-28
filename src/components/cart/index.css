@@ -7,18 +7,18 @@
   color: var(--text-light);
 }
 
-.OrderDetail .sectionHeading {
+.OrderDetail .SectionHeading {
   width: 100%;
 }
 
-.OrderDetail .lineItemContainer {
+.OrderDetail .LineItemContainer {
   margin-top: 3vmin;
   justify-content: flex-start;
   height: calc(100vh - 18vmin);
   width: 100%;
 }
 
-.OrderDetail .total {
+.OrderDetail .Total {
   width: 100%;
   display: grid;
   grid-template-columns: 18.35vw 5.75vw 5.25vw;
@@ -27,7 +27,7 @@
   border-top: 0.1vmin solid var(--tan-3);
 }
 
-.OrderDetail .total span {
+.OrderDetail .Total span {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +35,7 @@
   color: var(--text-dark);
 }
 
-.OrderDetail .total span.right {
+.OrderDetail .Total span.right {
   display: flex;
   justify-content: flex-end;
 }

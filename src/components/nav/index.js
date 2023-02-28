@@ -7,8 +7,8 @@ import UserLogout from "../user_logout";
 import "./index.css";
 
 const Nav = () => {
-  const location = useLocation();
   let [categories, setCategories] = useState([]);
+  const location = useLocation().pathname;
 
   useEffect(() => {
     const getCategories = async () => {
@@ -24,7 +24,7 @@ const Nav = () => {
     <nav className="nav">
       <Logo />
 
-      {location.pathname === "/orders/new" ? (
+      {location === "/orders/new" ? (
         <>
           <CategoryList categories={categories} />
           <Link to="/orders" className="button btn-sm">

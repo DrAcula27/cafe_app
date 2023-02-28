@@ -1,18 +1,26 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../contexts/app_context";
 import CartItem from "../cart_item";
+import axios from "axios";
 import "./index.css";
 
-const Cart = ({ handleChangeQty, handleCheckout }) => {
-  // handleChangeQty -> to add item to cart, change qty, or remove it if qty set to 0
-
-  // handleCheckout
-
-  let { cart } = useContext(AppContext);
+const Cart = ({ handleChangeQty }) => {
+  let { cart, setCart } = useContext(AppContext);
 
   let orderItemsJSX = cart.orderItems.map((cartItem) => {
-    return <CartItem cartItem={cartItem} checkoutDone={cart.checkoutDone} />;
+    return (
+      <CartItem
+        key={cartItem._id}
+        cartItem={cartItem}
+        checkoutDone={cart.checkoutDone}
+      />
+    );
   });
+
+  const handleCheckout = async () => {
+    let response = await axios.put("/checkout");
+    setCart(response.data);
+  };
 
   return (
     <div className="OrderDetail">
@@ -31,17 +39,18 @@ const Cart = ({ handleChangeQty, handleCheckout }) => {
           </>
         )}
       </div>
-      <div className="OrderItemContainer">
-        {/* list of order items */}
+      <div className="LineItemContainer">
         {orderItemsJSX}
-        <section>
+        <section className="Total">
           {cart.checkoutDone ? (
             <span>TOTAL</span>
           ) : (
-            <button className="btn-sm">CHECKOUT</button>
+            <button className="btn-sm" onClick={handleCheckout}>
+              CHECKOUT
+            </button>
           )}
-          <span>qty</span>
-          <span className="right">Order Total Price</span>
+          <span>{cart.totalQty}</span>
+          <span className="right">${cart.orderTotal}</span>
         </section>
       </div>
     </div>

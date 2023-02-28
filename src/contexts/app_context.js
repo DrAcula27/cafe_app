@@ -5,7 +5,7 @@ export const AppContext = createContext();
 // take in props to get access to the children
 const AppContextProvider = ({ children }) => {
   // put state
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(false);
   const [activeCat, setActiveCat] = useState("Sandwiches");
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState({

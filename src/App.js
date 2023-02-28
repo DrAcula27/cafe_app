@@ -11,7 +11,7 @@ import Loader from "react-js-loader";
 import axios from "axios";
 
 function App() {
-  const [callMade, setCallMade] = useState(null);
+  const [callMade, setCallMade] = useState(false);
   let { user, setUser, setItems, setCart } = useContext(AppContext);
 
   useEffect(() => {
