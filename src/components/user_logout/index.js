@@ -4,7 +4,6 @@ import { AppContext } from "../../contexts/app_context";
 
 const UserLogout = () => {
   const { user } = useContext(AppContext);
-
   const handleLogout = () => {};
 
   return (

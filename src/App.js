@@ -41,7 +41,9 @@ function App() {
         setCart(cartResponse.data);
       }
     };
-    getCart();
+    if (user) {
+      getCart();
+    }
   }, [user]);
 
   const returnPage = () => {

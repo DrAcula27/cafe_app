@@ -1,8 +1,21 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext } from "react";
+import { AppContext } from "../../contexts/app_context";
 import "./index.css";
 
 const MenuListItem = ({ itemData }) => {
-  const handleAddToOrder = () => {};
+  const { setCart } = useContext(AppContext);
+
+  const handleAddToOrder = async () => {
+    // make an axios call to add an item to the order
+    let res = await axios({
+      method: "PUT",
+      url: `/add_to_cart/${itemData._id}`,
+    });
+    if (res.data._id) {
+      setCart(res.data);
+    }
+  };
 
   return (
     <div className="MenuListItem">

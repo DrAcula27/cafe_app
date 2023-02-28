@@ -8,7 +8,14 @@ const AppContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [activeCat, setActiveCat] = useState("Sandwiches");
   const [items, setItems] = useState([]);
-  const [cart, setCart] = useState({});
+  const [cart, setCart] = useState({
+    orderId: "",
+    checkoutDone: false,
+    updatedAt: "",
+    orderItems: [],
+    totalQty: 0,
+    orderTotal: 0,
+  });
 
   return (
     <AppContext.Provider

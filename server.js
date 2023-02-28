@@ -116,14 +116,38 @@ app.get("/get_cart", async (req, res) => {
   res.json(cart);
 });
 
-app.put("/add_to_cart/:itemId/:newQty", async (req, res) => {
-  let { itemId, newQty } = req.params;
+app.put("/add_to_cart/:itemId", async (req, res) => {
+  let { itemId } = req.params;
+  let userId = req.session.passport.user._id;
+  let cart = await Order.getCart(userId);
+  console.log(cart);
+  const orderItem = cart.orderItems.find((orderItem) =>
+    orderItem.item._id.equals(itemId)
+  );
 
-  let cart = await Order.getCart(req.session.passport.user._id);
-
-  cart.orderItems.find((orderItem) => orderItem._id.equals(itemId));
-  // check if this item already exists in the array
+  if (orderItem) {
+    orderItem.qty += 1;
+  } else {
+    const item = await Item.findById(itemId);
+    console.log(item);
+    cart.orderItems.push({
+      qty: 1,
+      item,
+    });
+  }
+  cart.save();
+  res.send(cart);
 });
+
+// for the + - buttons
+// app.put("/add_to_cart/:itemId/:newQty", async (req, res) => {
+//   let { itemId, newQty } = req.params;
+
+//   let cart = await Order.getCart(req.session.passport.user._id);
+
+//   cart.orderItems.find((orderItem) => orderItem._id.equals(itemId));
+//   // check if this item already exists in the array
+// });
 
 // catch-all route for get requests, must be last in route list
 app.get("/*", (req, res) => {

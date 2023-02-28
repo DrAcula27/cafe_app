@@ -29,7 +29,8 @@ const Login = () => {
 
     // get session info (user)
     let user = await getUserFromSession();
-    setUser(user);
+    console.log(user);
+    setUser(user._doc);
   };
 
   return (

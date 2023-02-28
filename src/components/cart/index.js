@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../contexts/app_context";
+import CartItem from "../cart_item";
 import "./index.css";
 
 const Cart = ({ handleChangeQty, handleCheckout }) => {
@@ -8,6 +9,10 @@ const Cart = ({ handleChangeQty, handleCheckout }) => {
   // handleCheckout
 
   let { cart } = useContext(AppContext);
+
+  let orderItemsJSX = cart.orderItems.map((item) => {
+    return <CartItem item={item} checkoutDone={cart.checkoutDone} />;
+  });
 
   return (
     <div className="Cart">
@@ -28,6 +33,7 @@ const Cart = ({ handleChangeQty, handleCheckout }) => {
       </div>
       <div className="OrderItemContainer">
         {/* list of order items */}
+        {orderItemsJSX}
         <section>
           {cart.checkoutDone ? (
             <span>TOTAL</span>
