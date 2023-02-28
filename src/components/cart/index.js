@@ -10,12 +10,12 @@ const Cart = ({ handleChangeQty, handleCheckout }) => {
 
   let { cart } = useContext(AppContext);
 
-  let orderItemsJSX = cart.orderItems.map((item) => {
-    return <CartItem item={item} checkoutDone={cart.checkoutDone} />;
+  let orderItemsJSX = cart.orderItems.map((cartItem) => {
+    return <CartItem cartItem={cartItem} checkoutDone={cart.checkoutDone} />;
   });
 
   return (
-    <div className="Cart">
+    <div className="OrderDetail">
       <div className="SectionHeading">
         {cart.checkoutDone ? (
           <>
